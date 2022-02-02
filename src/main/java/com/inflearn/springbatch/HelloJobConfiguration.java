@@ -31,6 +31,9 @@ public class HelloJobConfiguration {
         return stepBuilderFactory.get(STEP1_NAME)
                 .tasklet((stepContribution, chunkContext) -> {
                     log.info("{} has been executed", STEP1_NAME);
+
+                    // 기본적으로 Step은 Tasklet을 무한반복 실행하도록 설정되어 있음.
+                    // 무한반복 실행을 방지하기 위해서는 RepeatStatus.FINISHED 로 리턴 해 주어야 함.
                     return RepeatStatus.FINISHED;
                 })
                 .build();
